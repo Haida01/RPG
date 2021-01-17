@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define numOp 3
 
 typedef struct Character {
 	char* name;
@@ -58,7 +59,8 @@ typedef struct Character {
 
 
 //function prototypes
-void title_screen();
+
+int title_screen();
 int main_menu();
 
 
@@ -71,15 +73,8 @@ int main(){
 
 
 //functions
-int main_menu(){
-	
-	
 
-	
-	return n;
-}
-
-void title_screen(){
+int title_screen(){
 
 	//word: RPG
 	
@@ -90,41 +85,77 @@ void title_screen(){
 	//■   ■  ■      ■ ■ ■ 	//fifth line
 	 
 	char c = 254; //■
-	int i, j;
+	int i, j, n=1;
 	
-	//first line
-		for(i=0; i<3; i++)
-			printf("%c %c %c  ",c,c,c);
+	do{
+		system("cls");
+		
+		//first line
+			for(i=0; i<3; i++)
+				printf("%c %c %c  ",c,c,c);
+				
+				printf("\n");
+		
+		//second line
+			for(i=0; i<2; i++)
+				printf("%c  %c  ",c,c);
+
+				printf("%c\n",c);
+		
+		//third line
+			for(i=0; i<3; i++)
+				printf("%c %c %c  ",c,c,c);
+
+				printf("%c\n",c);
+
+		//fourth line
+			printf("%c %c    ",c,c);
+			printf("%c      ",c);
+			printf("%c  %c\n",c,c);s
 			
-			printf("\n");
-	
-	//second line
-		for(i=0; i<2; i++)
+		//fifth line
 			printf("%c  %c  ",c,c);
+			printf("%c      ",c);
+			printf("%c %c %c  \n",c,c,c);
 
-			printf("%c\n",c);
+		n = main_menu(n);
+	}while(n!=13);//13=enter key
 	
-	//third line
-		for(i=0; i<3; i++)
-			printf("%c %c %c  ",c,c,c);
-
-			printf("%c\n",c);
-
-	//fourth line
-		printf("%c %c    ",c,c);
-		printf("%c      ",c);
-		printf("%c  %c\n",c,c);s
-		
-	//fifth line
-		printf("%c  %c  ",c,c);
-		printf("%c      ",c);
-		printf("%c %c %c  \n",c,c,c);
-		
-		
-	/*int*/ main_menu();
 	
-	return;
+	return n;
 }
+
+int main_menu(int n){
+	
+	char c;
+	char *op[numOp];
+	
+	op[0] = "New game";
+	op[1] = "Load game";
+	op[2] = "Exit";
+	
+
+	switch(n){
+		case 1:
+			printf("->%s \n%s \n%s",op[0],op[1],op[2]);
+		case 2:
+			printf("%s \n->%s \n%s",op[0],op[1],op[2]);
+		case 3:
+			printf("%s \n%s \n->%s",op[0],op[1],op[2]);
+	}
+	
+	c = getch();
+
+	switch(c){
+		case 80: //down
+			n--;
+		case 72: //up
+			n++;
+	}
+
+	return n;
+}
+
 
 
 
