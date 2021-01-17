@@ -68,6 +68,8 @@ int main(){
 	
 	title_screen();
 	
+	printf("\n\nBye");
+	
 	return 0;
 }
 
@@ -98,34 +100,33 @@ int title_screen(){
 		
 		//second line
 			for(i=0; i<2; i++)
-				printf("%c  %c  ",c,c);
+				printf("%c   %c  ",c,c);
 
 				printf("%c\n",c);
 		
 		//third line
-			for(i=0; i<3; i++)
+			for(i=0; i<2; i++)
 				printf("%c %c %c  ",c,c,c);
 
-				printf("%c\n",c);
+				printf("%c %c %c %c\n",c,c,c,c);
 
 		//fourth line
 			printf("%c %c    ",c,c);
 			printf("%c      ",c);
-			printf("%c  %c\n",c,c);s
+			printf("%c   %c\n",c,c);
 			
 		//fifth line
-			printf("%c  %c  ",c,c);
+			printf("%c   %c  ",c,c);
 			printf("%c      ",c);
-			printf("%c %c %c  \n",c,c,c);
+			printf("%c %c %c \n\n\n",c,c,c);
 
-		n = main_menu(n);
-	}while(n!=13);//13=enter key
+	}while(main_menu(&n)!=13);//13=enter key
 	
 	
 	return n;
 }
 
-int main_menu(int n){
+int main_menu(int *n){
 	
 	char c;
 	char *op[numOp];
@@ -135,25 +136,30 @@ int main_menu(int n){
 	op[2] = "Exit";
 	
 
-	switch(n){
+	switch(*n){
 		case 1:
-			printf("->%s \n%s \n%s",op[0],op[1],op[2]);
+			printf("->%s \n  %s \n  %s",op[0],op[1],op[2]);
+			break;
 		case 2:
-			printf("%s \n->%s \n%s",op[0],op[1],op[2]);
+			printf("  %s \n->%s \n  %s",op[0],op[1],op[2]);
+			break;
 		case 3:
-			printf("%s \n%s \n->%s",op[0],op[1],op[2]);
+			printf("  %s \n  %s \n->%s",op[0],op[1],op[2]);
 	}
 	
 	c = getch();
 
 	switch(c){
 		case 80: //down
-			n--;
+			if((*n)<3) 
+				++(*n);
+			break;
 		case 72: //up
-			n++;
+			if((*n)>1) 
+				--(*n);
 	}
 
-	return n;
+	return c;
 }
 
 
