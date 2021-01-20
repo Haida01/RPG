@@ -1,7 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <conio.h>
 
-#define numOp 3
+#define numOp 3 //number of options in the main menu
+#define code -32 //number for directional key
+
+/*
+typedef struct structure {
+	int n;
+	char c;
+	double d;
+}st;
+*/
 
 typedef struct Character {
 	char* name;
@@ -57,24 +68,38 @@ typedef struct Character {
 	
 }ch;
 
-
-//function prototypes
-
+//title screen
 int title_screen();
 int main_menu();
 
+//menu options
+void new_game();
+// void load_game();
+// void exit_game();
+
+//other
+void directional_key(int *i, int *j, char *c);
+//void help();
 
 int main(){
 	
-	title_screen();
+	// switch(title_screen()){
+		// case 1:
+			// //new_game(); break;
+		// case 2:
+			// //load_game(); break;
+		// case 3:
+			// //exit_game();
+	// }
 	
+	new_game();
 	printf("\n\nBye");
 	
 	return 0;
 }
 
 
-//functions
+//title screen
 
 int title_screen(){
 
@@ -93,8 +118,9 @@ int title_screen(){
 		system("cls");
 		
 		//first line
-			for(i=0; i<3; i++)
+			for(i=0; i<3; i++){
 				printf("%c %c %c  ",c,c,c);
+			}
 				
 				printf("\n");
 		
@@ -163,7 +189,48 @@ int main_menu(int *n){
 }
 
 
+//menu options
 
+void new_game(){
+	
+	// char *a;
+	// a = (char*)calloc(40, sizeof(char));
+	
+	int dim = 40;
+	int dim2 = 4;
+	int n=1;
+	char f[dim];
+	char t[dim];
+	char g[dim];
+	char c;
+	int i=0, j=0;
+	
+	while(i<10){
+		directional_key(&i, &j, &c);
+		
+		if(c==13)
+			exit(1);
+	}
+		
+	
+	
+	/*
+	printf("%s\n%s", c, t);
+	
+	
+	switch(n){
+		case 1:
+			printc(c, dim2); break;
+		case 2:
+			printc(t, dim2); break;
+	}	
+	*/
+	
+	
+	
+		
+	return;
+}
 
 
 
