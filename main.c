@@ -79,6 +79,7 @@ void new_game();
 
 //other
 void directional_key(int *i, int *j, char *c);
+void arrow_keys(int *i, int *j, char *c);
 //void help();
 
 int main(){
@@ -207,6 +208,7 @@ void new_game(){
 	
 	while(i<10){
 		directional_key(&i, &j, &c);
+		arrow_keys(&i, &j, &c);
 		
 		if(c==13)
 			exit(1);
@@ -235,7 +237,36 @@ void new_game(){
 
 
 
+void arrow_keys(int *i, int *j, char *c){
 
-
+	(*c) = getch();
+	printf("%d,", (*c));
+		
+	if((*j)==1){
+		switch(*c){
+			case 72: //up
+				printf("up"); break;
+				
+			case 80: //down
+				printf("down"); break;
+				
+			case 75: //left
+				printf("left"); break;
+				
+			case 77: //right
+				printf("right"); break;
+		}
+		
+		(*j)=0;
+	}
+	
+	if((*c)==code && (*j)==0){
+		printf("ok");
+		*j=1; (*i)--;
+	}	
+	(*i)++;
+		
+	return;
+}
 
 
